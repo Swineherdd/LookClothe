@@ -1,0 +1,78 @@
+$accent-color: #c87faa;
+$text-primary: #ffffff;
+$transition: all 0.3s ease;
+$font-primary: 'Montserrat', sans-serif;
+
+.navigation {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  position: relative;
+  transition: $transition;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $accent-color;
+    opacity: 0;
+    transition: $transition;
+    transform: scaleX(0);
+  }
+
+  &:hover {
+    .navText:not(.active) {
+      color: $accent-color;
+    }
+
+    &::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+}
+
+.navText {
+  font-family: $font-primary;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: $text-primary;
+  transition: $transition;
+  letter-spacing: 0.5px;
+
+  &.active {
+    color: $accent-color;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navigation {
+    gap: 20px;
+  }
+  
+  .navText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    display: none; 
+  }
+}

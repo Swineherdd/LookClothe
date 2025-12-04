@@ -1,0 +1,165 @@
+.container {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  max-width: 1300px; 
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: #999999;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    left: 14px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.input {
+  width: 100%;
+  color: black;
+ border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  padding: 12px 45px 12px 45px;
+  background-color: white;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  -webkit-appearance: none; 
+  appearance: none;
+   &::-webkit-search-cancel-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+  
+  /* Убираем нативный крестик в IE/Edge */
+  &::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Убираем нативный крестик в Firefox */
+  &::-moz-search-cancel-button {
+    display: none;
+  }
+  
+  /* Общий сброс для всех браузеров */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &:focus {
+    outline: none;
+    border-color: #c87faa;
+    box-shadow: 0 0 0 2px rgba(200, 127, 170, 0.1);
+  }
+
+  &::placeholder {
+    color: #999999;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+
+  @media (max-width: 768px) {
+    padding: 10px 40px 10px 40px;
+    font-size: 13px;
+    min-height: 40px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 38px 10px 38px;
+    font-size: 16px;
+    border-radius: 20px; 
+  }
+}
+
+.clearButton {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  min-height: 32px;
+  min-width: 32px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #c87faa;
+    outline-offset: 1px;
+  }
+
+  @media (max-width: 768px) {
+    right: 14px;
+    min-height: 30px;
+    min-width: 30px;
+  }
+}
+
+.clearIcon {
+  width: 16px;
+  height: 16px;
+  color: #999999;
+  stroke-width: 2;
+
+  @media (max-width: 768px) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .input {
+    padding: 11px 44px 11px 44px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .input {
+    padding: 13px 48px 13px 48px;
+    font-size: 15px;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    left: 18px;
+  }
+  
+  .clearButton {
+    right: 18px;
+  }
+}

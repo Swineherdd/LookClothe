@@ -1,0 +1,349 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 30px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modal {
+  scrollbar-width: none;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 30px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #6c6c6c;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+
+  &:hover {
+    color: #333333;
+  }
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.imageSection {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  aspect-ratio: 3/4;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.regenerateButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 100px;
+  padding: 8px 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #333333;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: white;
+  }
+}
+
+.regenerateIcon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sectionTitle {
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+  font-size: 16px;
+}
+
+.selectContainer {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  border: 1px solid #f6f6f6;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+    border-color: #c87faa;
+  }
+}
+
+.selectIcon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #6c6c6c;
+  pointer-events: none;
+}
+
+.divider {
+  border-top: 1px solid #e0e0e0;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+  font-size: 14px;
+}
+
+.colors, .seasons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.colorButton, .seasonButton {
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #f7ecf2;
+  color: #333333;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c87faa;
+    color: white;
+  }
+
+  &.selected {
+    background-color: #c87faa;
+    color: white;
+  }
+}
+
+.textarea {
+  width: 90%;
+  border: 1px solid #f6f6f6;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  resize: none;
+  min-height: 80px;
+
+  &:focus {
+    outline: none;
+    border-color: #c87faa;
+  }
+}
+
+.storageButton {
+  width: 100%;
+  border: 1px solid #f6f6f6;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: #c87faa;
+  }
+}
+
+.storageText {
+  color: #333333;
+}
+
+.input {
+  width: 90%;
+  border: 1px solid #f6f6f6;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: #c87faa;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.deleteButton {
+  background: #fef2f2;
+  color: #ef4444;
+  border-radius: 100px;
+  padding: 14px 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover {
+    background: #fee2e2;
+  }
+}
+
+.deleteIcon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+}
+
+.cancelButton {
+  flex: 1;
+  background-color: #f7ecf2;
+  color: #333333;
+  border-radius: 100px;
+  padding: 14px 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e8dce5;
+  }
+}
+
+.submitButton {
+  flex: 1;
+  background-color: #c87faa;
+  color: white;
+  border-radius: 100px;
+  padding: 14px 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #b56d96;
+  }
+}

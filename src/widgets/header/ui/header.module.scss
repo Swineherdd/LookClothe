@@ -1,0 +1,187 @@
+$primary-bg: #333333;
+$secondary-bg: #1a1a1a;
+$accent-color: #c87faa;
+$text-primary: #ffffff;
+$text-secondary: #999999;
+$text-accent: #c87faa;
+$transition: all 0.3s ease;
+$font-primary: 'Montserrat', sans-serif;
+
+.header {
+  background-color: $primary-bg;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: $transition;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: $primary-bg;
+    transition: $transition;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
+  max-width: 1920px;
+  margin: 0 auto;
+  transition: $transition;
+  position: relative;
+  z-index: 1;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.switcher {
+  display: flex;
+  align-items: center;
+  background-color: $secondary-bg;
+  border-radius: 100px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.switcherButton {
+  padding: 13px 18px;
+  border-radius: 100px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: $transition;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  &:not(.active) {
+    color: $text-secondary;
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+
+  &.active {
+    background-color: $accent-color;
+    color: $text-primary;
+  }
+}
+
+.switcherText {
+  font-family: $font-primary;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: $transition;
+  color: $text-primary;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  strokeWidth: 2;
+  strokeLinecap: round;
+  strokeLinejoin: round;
+  transition: $transition;
+}
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: $transition;
+  color: $text-primary;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.userIcon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: $transition;
+}
+@media (max-width: 1024px) {
+  .container {
+    padding: 20px 30px;
+  }
+  
+  .leftSection {
+    gap: 20px;
+  }
+  
+  .rightSection {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px 20px;
+  }
+  
+  .switcher {
+    padding: 3px;
+  }
+  
+  .switcherButton {
+    padding: 6px 15px;
+  }
+  
+  .switcherText {
+    font-size: 11px;
+  }
+}

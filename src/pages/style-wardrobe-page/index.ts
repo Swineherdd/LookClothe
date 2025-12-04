@@ -1,0 +1,1 @@
+export { StyleWardrobePage } from './ui/style-wardrobe-page';

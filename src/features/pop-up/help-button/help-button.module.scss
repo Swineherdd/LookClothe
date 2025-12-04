@@ -1,0 +1,37 @@
+$accent-color: #c87faa;
+$text-primary: #ffffff;
+$transition: all 0.3s ease;
+
+.helpButtonContainer {
+  position: relative;
+}
+
+.helpButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: $transition;
+  color: $text-primary;
+
+  &:hover {
+    color: $accent-color;
+  }
+
+  &:focus {
+    outline: none;
+    color: $accent-color;
+  }
+}
+
+.helpIcon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: $transition;
+}
