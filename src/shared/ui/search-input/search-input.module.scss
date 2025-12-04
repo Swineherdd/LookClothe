@@ -47,19 +47,18 @@
     -webkit-appearance: none;
   }
   
-  /* Убираем нативный крестик в IE/Edge */
   &::-ms-clear {
     display: none;
     width: 0;
     height: 0;
   }
   
-  /* Убираем нативный крестик в Firefox */
+ 
   &::-moz-search-cancel-button {
     display: none;
   }
   
-  /* Общий сброс для всех браузеров */
+  
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

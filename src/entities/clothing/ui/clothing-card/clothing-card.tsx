@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
 import { ClothingCard as IClothingCard } from '../../model/types/clothing.interface';
 import { ClothingActions } from '../../../../features/wardobe';
+import { useFittingRoom } from '../../../../features/fitting-room/model/context/FittingRoomContext';
 import styles from './clothing-card.module.scss';
 
 interface ClothingCardProps {
   clothing: IClothingCard;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
-  onToggleFittingRoom: (id: string) => void;
 }
 
 export const ClothingCard: React.FC<ClothingCardProps> = ({
   clothing,
   onEdit,
   onDelete,
-  onToggleFittingRoom,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [hasImageError, setHasImageError] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
+
+  const { 
+    addToFittingRoom, 
+    removeFromFittingRoom, 
+    isInFittingRoom 
+  } = useFittingRoom();
+
+  const inFittingRoom = isInFittingRoom(clothing.id);
 
   const handleEditClick = () => {
     onEdit(clothing.id);
@@ -30,8 +38,19 @@ export const ClothingCard: React.FC<ClothingCardProps> = ({
     setIsMenuOpen(false);
   };
 
-  const handleFittingRoomClick = () => {
-    onToggleFittingRoom(clothing.id);
+  const handleFittingRoomClick = async () => {
+    if (isAdding) return;
+    
+    setIsAdding(true);
+    
+    if (inFittingRoom) {
+      removeFromFittingRoom(clothing.id);
+    } else {
+      addToFittingRoom(clothing);
+    }
+    
+    // Небольшая задержка для UX
+    setTimeout(() => setIsAdding(false), 300);
   };
 
   // Fallback изображение
@@ -41,7 +60,13 @@ export const ClothingCard: React.FC<ClothingCardProps> = ({
 
   return (
     <div className={styles.card}>
-      <div className={styles.imageContainer}>
+      <div 
+        className={styles.imageContainer}
+        onClick={handleFittingRoomClick}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && handleFittingRoomClick()}
+      >
         {/* Placeholder пока загружается */}
         {!isImageLoaded && !hasImageError && (
           <div className={styles.imagePlaceholder} />
@@ -70,31 +95,51 @@ export const ClothingCard: React.FC<ClothingCardProps> = ({
             />
           </div>
           <button 
-            className={`${styles.fittingButton} ${
-              clothing.inFittingRoom ? styles.inFittingRoom : ''
-            }`}
+            className={`${styles.fittingButton} ${inFittingRoom ? styles.inFittingRoom : ''} ${isAdding ? styles.adding : ''}`}
             onClick={handleFittingRoomClick}
+            disabled={isAdding}
+            aria-label={inFittingRoom ? 'Убрать из примерочной' : 'Добавить в примерочную'}
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              className={styles.cartIcon}
-              aria-hidden="true"
-            >
-              <circle cx="8" cy="21" r="1"></circle>
-              <circle cx="19" cy="21" r="1"></circle>
-              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-            </svg>
-            {clothing.inFittingRoom ? 'В примерочной' : 'Примерить'}
+            {isAdding ? (
+              <div className={styles.spinner} />
+            ) : (
+              <>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" 
+                  height="24" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  className={styles.cartIcon}
+                  aria-hidden="true"
+                >
+                  <circle cx="8" cy="21" r="1"></circle>
+                  <circle cx="19" cy="21" r="1"></circle>
+                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                {inFittingRoom ? 'В примерочной' : 'Примерить'}
+              </>
+            )}
           </button>
         </div>
+        
+        {/* Бейдж на карточке если в примерочной */}
+        {inFittingRoom && (
+          <div className={styles.fittingRoomBadge}>
+            <svg 
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="currentColor"
+            >
+              <path d="M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z"/>
+            </svg>
+          </div>
+        )}
       </div>
       <div className={styles.info}>
         <div className={styles.brand}>{clothing.brand}</div>

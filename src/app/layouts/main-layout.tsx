@@ -4,6 +4,7 @@ import { Header } from '../../widgets/header/ui/header';
 import { useMode, AppMode } from '../providers/mode-provider';
 import styles from './main-layout.module.scss';
 import { Footer } from '../../widgets/footer/index';
+import { FittingRoomCart, FittingRoomProvider } from '../../features/fitting-room';
 
 export const MainLayout: React.FC = () => {
   const { mode } = useMode();
@@ -14,8 +15,10 @@ export const MainLayout: React.FC = () => {
   const showStyleContent = mode === AppMode.STYLE && location.pathname !== '/';
 
   return (
+    <FittingRoomProvider>
     <div className={styles.layout}>
       <Header />
+      
       <main className={styles.main}>
         {showShoppingContent && (
           <div className={styles.content}>
@@ -31,5 +34,6 @@ export const MainLayout: React.FC = () => {
       </main>
       <Footer />
     </div>
+    </FittingRoomProvider>
   );
 };

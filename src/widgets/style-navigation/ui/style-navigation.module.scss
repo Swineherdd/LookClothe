@@ -1,12 +1,22 @@
 $accent-color: #c87faa;
 $text-primary: #ffffff;
+$text-inactive: #d0d0d0;
+$bg-color: #333333;
+$border-color: #4a4a4a;
 $transition: all 0.3s ease;
 $font-primary: 'Montserrat', sans-serif;
 
-.navigation {
+// Desktop navigation styles
+.desktopNavigation {
   display: flex;
   gap: 40px;
   align-items: center;
+  
+  &.scrolled {
+    .navText {
+      font-size: 12px;
+    }
+  }
 }
 
 .navButton {
@@ -48,31 +58,117 @@ $font-primary: 'Montserrat', sans-serif;
 
 .navText {
   font-family: $font-primary;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
   line-height: 1.5;
   color: $text-primary;
   transition: $transition;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 
   &.active {
     color: $accent-color;
   }
 }
 
+// Mobile bottom navigation styles
+.mobileNavigation {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: $bg-color;
+  border-top: 1px solid $border-color;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mobileNavGrid {
+  display: grid;
+  height: 70px;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+}
+
+.mobileNavButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 4px;
+  transition: $transition;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    .mobileNavIcon {
+      color: $accent-color;
+    }
+    
+    .mobileNavLabel {
+      color: $accent-color;
+    }
+  }
+}
+
+.mobileNavIcon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: $transition;
+  color: $text-inactive;
+
+  &.active {
+    color: $accent-color;
+  }
+}
+
+.mobileNavLabel {
+  font-family: $font-primary;
+  font-size: 10px;
+  
+  transition: $transition;
+  color: $text-inactive;
+
+  &.active {
+    color: $accent-color;
+  }
+}
+
+// Responsive styles
 @media (max-width: 1024px) {
-  .navigation {
+  .desktopNavigation {
     gap: 20px;
   }
   
   .navText {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 768px) {
-  .navigation {
-    display: none; 
+  .desktopNavigation {
+    display: none;
+  }
+  
+  .mobileNavigation {
+    display: block;
+  }
+}
+
+// Safe area for modern mobile devices
+@supports (padding: max(0px)) {
+  .mobileNavigation {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
   }
 }

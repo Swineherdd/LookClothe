@@ -13,6 +13,7 @@ import {
   TAG_OPTIONS
 } from '../../../features/wardrobe-filters/model/constants/filters.constants';
 import styles from './style-wardrobe-page.module.scss';
+import { FittingRoomCart } from '../../../features/fitting-room';
 
 export const StyleWardrobePage: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -181,6 +182,7 @@ export const StyleWardrobePage: React.FC = () => {
 
   return (
     <div className={styles.page}>
+      <FittingRoomCart/>
       <div className={styles.header}>
         <h1 className={styles.title}>МОИ ВЕЩИ</h1>
         <AddClothingButton onClick={openAddModal} />
@@ -238,7 +240,7 @@ export const StyleWardrobePage: React.FC = () => {
             clothing={item}
             onEdit={handleEdit}
             onDelete={handleDelete}
-            onToggleFittingRoom={handleToggleFittingRoom}
+           
           />
         ))}
         

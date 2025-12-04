@@ -14,16 +14,10 @@ $font-primary: 'Montserrat', sans-serif;
   top: 0;
   z-index: 50;
   transition: $transition;
+  box-shadow: none;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background-color: $primary-bg;
-    transition: $transition;
+  &.scrolled {
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -35,8 +29,6 @@ $font-primary: 'Montserrat', sans-serif;
   max-width: 1920px;
   margin: 0 auto;
   transition: $transition;
-  position: relative;
-  z-index: 1;
 }
 
 .leftSection {
@@ -92,6 +84,73 @@ $font-primary: 'Montserrat', sans-serif;
   white-space: nowrap;
   letter-spacing: 0.5px;
   line-height: 1;
+  transition: $transition;
+}
+
+// Навигация для не-стиль режима
+.navigation {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  
+  &.scrolled {
+    .navText {
+      font-size: 12px;
+    }
+  }
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  position: relative;
+  transition: $transition;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $accent-color;
+    opacity: 0;
+    transition: $transition;
+    transform: scaleX(0);
+  }
+
+  &:hover {
+    .navText:not(.active) {
+      color: $accent-color;
+    }
+
+    &::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+}
+
+.navText {
+  font-family: $font-primary;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: $text-primary;
+  transition: $transition;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+
+  &.active {
+    color: $accent-color;
+  }
 }
 
 .rightSection {
@@ -116,37 +175,7 @@ $font-primary: 'Montserrat', sans-serif;
   }
 }
 
-.icon {
-  width: 24px;
-  height: 24px;
-  strokeWidth: 2;
-  strokeLinecap: round;
-  strokeLinejoin: round;
-  transition: $transition;
-}
-.rightSection {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-
-.iconButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: $transition;
-  color: $text-primary;
-
-  &:hover {
-    color: $accent-color;
-  }
-}
-
-.userIcon {
+.helpIcon, .userIcon {
   width: 24px;
   height: 24px;
   stroke-width: 2;
@@ -154,15 +183,55 @@ $font-primary: 'Montserrat', sans-serif;
   stroke-linejoin: round;
   transition: $transition;
 }
+
+// Styles when scrolled
+.scrolled {
+  .container {
+    padding: 12px 60px;
+  }
+
+  .switcherButton {
+    padding: 8px 20px;
+  }
+
+  .switcherText {
+    font-size: 12px;
+  }
+
+  .navText {
+    font-size: 12px;
+  }
+
+  .helpIcon,
+  .userIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 @media (max-width: 1024px) {
   .container {
     padding: 20px 30px;
   }
-  
+
+  .scrolled {
+    .container {
+      padding: 12px 30px;
+    }
+  }
+
   .leftSection {
     gap: 20px;
   }
-  
+
+  .navigation {
+    gap: 20px;
+  }
+
+  .navText {
+    font-size: 12px;
+  }
+
   .rightSection {
     gap: 30px;
   }
@@ -172,16 +241,53 @@ $font-primary: 'Montserrat', sans-serif;
   .container {
     padding: 15px 20px;
   }
-  
+
+  .scrolled {
+    .container {
+      padding: 8px 20px;
+    }
+  }
+
   .switcher {
     padding: 3px;
   }
-  
+
   .switcherButton {
     padding: 6px 15px;
   }
-  
+
+  .scrolled {
+    .switcherButton {
+      padding: 5px 15px;
+    }
+  }
+
   .switcherText {
     font-size: 11px;
+  }
+
+  .scrolled {
+    .switcherText {
+      font-size: 10px;
+    }
+  }
+
+  // Скрываем десктопную навигацию и правую секцию на мобильных
+  .navigation {
+    display: none;
+  }
+
+  .rightSection {
+    display: none;
+  }
+
+  .navText {
+    font-size: 12px;
+  }
+
+  .scrolled {
+    .navText {
+      font-size: 10px;
+    }
   }
 }

@@ -24,9 +24,9 @@
     "moduleResolution": "node",
     "noEmit": true,
     "resolveJsonModule": true,
-    "noImplicitReturns": false,  // Игнорировать TS7030 (не все пути возвращают значение)
-    "noUnusedLocals": false,     // Игнорировать TS6133 (неиспользуемые локальные переменные/импорты)
-    "noUnusedParameters": false, // Если есть похожие ошибки с параметрами
+    "noImplicitReturns": false,  
+    "noUnusedLocals": false,    
+    "noUnusedParameters": false, 
     "strict": false,
     "strictNullChecks": true,
     "noFallthroughCasesInSwitch": true,
