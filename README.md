@@ -1,75 +1,121 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Современное веб-приложение на базе React для управления личным гардеробом. Легко добавляйте, редактируйте, ищите и фильтруйте вещи, с интуитивной категоризацией и отслеживанием хранения.
 
-Currently, two official plugins are available:
+## 🌟 Ключевые возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **👕 Управление вещами**: Добавляйте, редактируйте и удаляйте предметы одежды с подробными атрибутами (название, бренд, категория, цвета, сезоны и т.д.).
+- **🔍 Расширенный поиск и фильтры**: Ищите по названию, бренду, категории или заметкам. Фильтруйте по категории, цвету, сезону, тегам и месту хранения.
+- **🏷️ Умная категоризация**: Организуйте вещи с подкатегориями, цветами, сезонами и пользовательскими тегами в заметках.
+- **📊 Динамические счетчики**: Просматривайте отфильтрованные результаты с реальным временем подсчета и общим количеством предметов.
+- **💡 Виртуальная примерочная**: Переключайте вещи в/из виртуальной примерочной для создания стилистических комбинаций.
+- **📱 Адаптивный дизайн**: Оптимизировано для десктопа и мобильных устройств с использованием модулей SCSS.
+- **⚡ Оптимизированная производительность**: Создано с использованием хуков React (useState, useEffect, useMemo, useCallback) для эффективного рендеринга и управления состоянием.
 
-## React Compiler
+## 🚀 Быстрый старт
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Требования
 
-Note: This will impact Vite dev & build performances.
+- Node.js (v16 или выше)
+- npm или yarn
 
-## Expanding the ESLint configuration
+### Установка
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Клонируйте репозиторий**:
+   ```bash
+   git clone https://github.com/your-username/style-wardrobe-app.git
+   cd style-wardrobe-app
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Установите зависимости**:
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Запустите сервер разработки**:
+   ```bash
+   npm start
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. **Сборка для продакшена**:
+   ```bash
+   npm run build
+   ```
+
+Приложение запустится по адресу [http://localhost:3000](http://localhost:3000).
+
+## 📂 Структура проекта
+
+```
+src/
+├── entities/
+│   └── clothing/
+│       ├── ClothingCard.tsx
+│       ├── model/
+│       │   ├── types.ts (например, интерфейс IClothing)
+│       │   └── mockData.ts (mockClothingItems)
+├── features/
+│   ├── add-clothing-modal/
+│   │   ├── AddClothingModal.tsx
+│   │   ├── AddClothingButton.tsx
+│   │   └── hook/useAddClothing.ts
+│   ├── edit-clothing-modal/
+│   │   └── EditClothingModal.tsx
+│   ├── wardrobe-filters/
+│   │   ├── WardrobeFilters.tsx
+│   │   ├── WardrobeFiltersButton.tsx
+│   │   ├── SelectedFilters.ts
+│   │   └── model/constants/filters.constants.ts
+│   └── (другие фичи...)
+├── pages/
+│   └── StyleWardrobePage/
+│       ├── index.tsx (основной компонент)
+│       └── style-wardrobe-page.module.scss
+├── shared/
+│   └── ui/
+│       └── SearchInput.tsx
+└── index.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Pages**: Основные страницы, такие как `StyleWardrobePage.tsx` (управляет видом гардероба).
+- **Entities**: Основная бизнес-логика, например, сущность `Clothing` с типами и мок-данными.
+- **Features**: Переиспользуемые модули фич (модальные окна, фильтры и т.д.).
+- **Shared**: Общие UI-компоненты и утилиты.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Технологический стек
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Фронтенд**: React 18+ с TypeScript
+- **Управление состоянием**: Хуки React (внешние библиотеки не требуются для этого проекта)
+- **Стилизация**: Модули SCSS для локальных стилей компонентов
+- **Инструмент сборки**: Create React App (CRA) для простой настройки
+- **Деплоймент**: Легко развертывается на Vercel, Netlify или любом хостинге для статических сайтов
+
+## 🔧 Настройка
+
+- **TypeScript**: Включен строгий режим для лучшего качества кода. Настройте `tsconfig.json` при необходимости (например, отключите `noUnusedLocals` для менее строгих проверок).
+- **SCSS**: Модульные стили в файлах `.module.scss` для изоляции CSS.
+
+## 🤝 Вклад в развитие
+
+Мы рады вкладу! Следуйте этим шагам:
+
+1. Форкните репозиторий.
+2. Создайте ветку для фичи (`git checkout -b feature/new-feature`).
+3. Зафиксируйте изменения (`git commit -m 'Добавить новую фичу'`).
+4. Запушьте в ветку (`git push origin feature/new-feature`).
+5. Откройте Pull Request.
+
+Убедитесь, что код соответствует лучшим практикам TypeScript и включает тесты, если применимо.
+
+## 📄 Лицензия
+
+Этот проект лицензирован по лицензии MIT — см. файл [LICENSE](LICENSE) для деталей.
+
+## 👨‍💻 Автор
+
+- **Ваше Имя** — [Ваш GitHub](https://github.com/your-username) | [Ваш Email](mailto:your.email@example.com)
+
+## 🐛 Проблемы и поддержка
+
+Если вы столкнулись с проблемами или у вас есть предложения, пожалуйста, откройте [Issue](https://github.com/your-username/style-wardrobe-app/issues) на GitHub.
+
+Удачного стилирования! 👗✨
