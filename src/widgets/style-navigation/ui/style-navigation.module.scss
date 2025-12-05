@@ -87,6 +87,7 @@ $font-primary: 'Montserrat', sans-serif;
 }
 
 .mobileNavGrid {
+  align-items: center;
   display: grid;
   height: 70px;
   grid-template-columns: repeat(5, 1fr);

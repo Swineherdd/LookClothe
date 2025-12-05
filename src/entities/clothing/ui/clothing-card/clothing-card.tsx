@@ -49,11 +49,10 @@ export const ClothingCard: React.FC<ClothingCardProps> = ({
       addToFittingRoom(clothing);
     }
     
-    // Небольшая задержка для UX
     setTimeout(() => setIsAdding(false), 300);
   };
 
-  // Fallback изображение
+
   const imageSrc = hasImageError 
     ? 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNGN0VDRjIiLz48cGF0aCBkPSJNMTUwIDEyMEwxOTAgMTgwTDE1MCAyNDBMMTEwIDE4MEwxNTAgMTIwWiIgZmlsbD0iI0M4N0ZBQSIvPjwvc3ZnPg=='
     : clothing.images[0];
@@ -67,7 +66,7 @@ export const ClothingCard: React.FC<ClothingCardProps> = ({
         tabIndex={0}
         onKeyDown={(e) => e.key === 'Enter' && handleFittingRoomClick()}
       >
-        {/* Placeholder пока загружается */}
+      
         {!isImageLoaded && !hasImageError && (
           <div className={styles.imagePlaceholder} />
         )}
@@ -128,18 +127,7 @@ export const ClothingCard: React.FC<ClothingCardProps> = ({
         </div>
         
         {/* Бейдж на карточке если в примерочной */}
-        {inFittingRoom && (
-          <div className={styles.fittingRoomBadge}>
-            <svg 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill="currentColor"
-            >
-              <path d="M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z"/>
-            </svg>
-          </div>
-        )}
+      
       </div>
       <div className={styles.info}>
         <div className={styles.brand}>{clothing.brand}</div>
